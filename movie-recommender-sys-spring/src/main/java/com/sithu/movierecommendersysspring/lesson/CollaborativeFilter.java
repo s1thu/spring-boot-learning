@@ -1,6 +1,5 @@
-package com.sithu.movierecommendersysspring.lesson3;
+package com.sithu.movierecommendersysspring.lesson;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
