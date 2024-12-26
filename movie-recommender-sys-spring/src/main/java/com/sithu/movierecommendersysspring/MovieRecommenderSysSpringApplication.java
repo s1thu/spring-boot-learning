@@ -1,13 +1,13 @@
 package com.sithu.movierecommendersysspring;
 
+import com.sithu.movierecommendersysspring.challenge.DiscountService;
 import com.sithu.movierecommendersysspring.lesson.ContentBasedFilter;
 import com.sithu.movierecommendersysspring.lesson.Movie;
 import com.sithu.movierecommendersysspring.lesson.RecommenderImplementation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
-import java.util.Arrays;
 
 @SpringBootApplication
 public class MovieRecommenderSysSpringApplication {
@@ -48,6 +48,30 @@ public class MovieRecommenderSysSpringApplication {
 
         System.out.println("Number of instances create for ContentBasedFilter "+ ContentBasedFilter.getInstances() );
         System.out.println("Number of instances create for Movie "+ Movie.getInstances() );
+
+        DiscountService discountService = new DiscountService();
+        System.out.println("Applying discounts:");
+
+        // Initialing the original price
+        double originalPrice = 100.0;
+        System.out.println("Original Price: $" + originalPrice);
+
+        // Apply default discount
+        double defaultDiscountedPrice = discountService.applyDefaultDiscount(originalPrice);
+        System.out.println("Price after Default Discount: $" + defaultDiscountedPrice);
+
+        // Apply membership discount
+        double membershipDiscountedPrice = discountService.applyMembershipDiscount(originalPrice);
+        System.out.println("Price after Membership Discount: $" + membershipDiscountedPrice);
+
+        // Apply bundle discount
+        double bundleDiscountedPrice = discountService.applyBundleDiscount(originalPrice);
+        System.out.println("Price after Bundle Discount: $" + bundleDiscountedPrice);
+
+        // Apply all discounts
+        double fullyDiscountedPrice = discountService.applyAllDiscounts(originalPrice);
+        System.out.println("Price after Full Discount: $" + fullyDiscountedPrice);
+
 
     }
 
