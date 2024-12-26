@@ -22,6 +22,11 @@ public class Movie {
         System.out.println("Movie instructor is called!");
     }
 
+    public Movie(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public static int getInstances(){
         return Movie.instances;
     }
@@ -34,5 +39,13 @@ public class Movie {
     @PreDestroy
     public void destroy(){
         System.out.println("Movie pre-destroy is called!");
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
