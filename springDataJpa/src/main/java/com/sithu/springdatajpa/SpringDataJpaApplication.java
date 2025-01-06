@@ -2,6 +2,7 @@ package com.sithu.springdatajpa;
 
 import com.sithu.springdatajpa.entities.Player;
 import com.sithu.springdatajpa.repository.PlayerRepository;
+import com.sithu.springdatajpa.repository.PlayerRepositoryJPA;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class SpringDataJpaApplication implements CommandLineRunner {
 
     @Autowired
     PlayerRepository playerRepository;
+
+    @Autowired
+    PlayerRepositoryJPA playerRepositoryJPA;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringDataJpaApplication.class, args);
@@ -41,6 +45,17 @@ public class SpringDataJpaApplication implements CommandLineRunner {
                 new Player(2,"Jack","MYN",date,100)
         ));
         playerRepository.deletePlayerById(2);
+
+        logger.info("Using Spring Data JPA");
+        logger.info("Save using SpringDataJPA {}", playerRepositoryJPA.save(
+                new Player("SithuWin","MYN",date,100)
+        ));
+        logger.info("Update using SpringDataJPA {}", playerRepositoryJPA.save(
+                        new Player(1,"WinWin","THA",date,100)
+                )
+        );
+        logger.info("Find By Id 1: {}" ,playerRepositoryJPA.findById(1));
+        playerRepositoryJPA.deleteById(1);
 
     }
 }
