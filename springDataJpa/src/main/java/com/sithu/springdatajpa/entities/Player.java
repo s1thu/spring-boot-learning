@@ -31,6 +31,14 @@ public class Player {
         this.titles = titles;
     }
 
+    public Player(int id, String name, String nationality, Date birthDate, int titles) {
+        this.id = id;
+        this.name = name;
+        this.nationality = nationality;
+        this.birthDate = birthDate;
+        this.titles = titles;
+    }
+
     public Player() {
 
     }
