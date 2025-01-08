@@ -28,4 +28,20 @@ public class PlayerController {
         return playerService.getPlayerById(id);
     }
 
+    @RequestMapping(method = RequestMethod.POST,value = "/players")
+    public void createPlayer(@RequestBody Player player){
+        player.setId(0);
+        playerService.addPlayer(player);
+    }
+
+    @PutMapping("/players/{id}")
+    public Player updatePlayer(@PathVariable int id, @RequestBody Player player){
+        return playerService.updatePlayer(id,player);
+    }
+
+    @DeleteMapping("/players/{id}")
+    public String deletePlayer(@PathVariable int id){
+        return playerService.deletePlayer(id);
+    }
+
 }
