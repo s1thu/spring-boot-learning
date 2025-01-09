@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 public class PlayerController {
@@ -42,6 +44,11 @@ public class PlayerController {
     @DeleteMapping("/players/{id}")
     public String deletePlayer(@PathVariable int id){
         return playerService.deletePlayer(id);
+    }
+
+    @PatchMapping("/players/{id}")
+    public Player patchPlayer(@PathVariable int id, @RequestBody Map<String, Object> playerPatch){
+        return playerService.patchPlayer(id,playerPatch);
     }
 
 }
