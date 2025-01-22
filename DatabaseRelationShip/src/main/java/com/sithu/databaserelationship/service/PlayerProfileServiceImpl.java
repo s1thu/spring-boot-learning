@@ -51,7 +51,11 @@ public class PlayerProfileServiceImpl implements PlayerProfileService{
     @Override
     public void deletePlayerProfile(int id) {
         Optional<PlayerProfile> playerProfile1 = playerProfileRepository.findById(id);
+
         if(playerProfile1.isPresent()) {
+            playerProfile1.get().getPlayer().setPlayerProfile(null);
+            playerProfile1.get().setPlayer(null);
+            playerProfileRepository.save(playerProfile1.get());
             playerProfileRepository.deleteById(id);
         }else
             throw new PlayerNotFoundException("PlayerProfile not found");

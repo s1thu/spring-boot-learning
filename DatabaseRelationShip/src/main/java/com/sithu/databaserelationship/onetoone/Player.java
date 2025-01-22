@@ -1,5 +1,6 @@
 package com.sithu.databaserelationship.onetoone;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Player {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    @JsonManagedReference
     private PlayerProfile playerProfile;
 
     public Player(String name, PlayerProfile playerProfile) {
