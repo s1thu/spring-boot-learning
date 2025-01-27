@@ -12,7 +12,7 @@ public class Player {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     @JsonManagedReference
     private PlayerProfile playerProfile;
