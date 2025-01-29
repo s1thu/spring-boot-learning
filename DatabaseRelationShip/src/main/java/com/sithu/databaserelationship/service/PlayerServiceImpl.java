@@ -1,6 +1,7 @@
 package com.sithu.databaserelationship.service;
 
 import com.sithu.databaserelationship.exception.PlayerNotFoundException;
+import com.sithu.databaserelationship.onetomany.Registration;
 import com.sithu.databaserelationship.onetoone.Player;
 import com.sithu.databaserelationship.onetoone.PlayerProfile;
 import com.sithu.databaserelationship.repository.PlayerRepository;
@@ -62,5 +63,12 @@ public class PlayerServiceImpl implements PlayerService{
         player.setPlayerProfile(playerProfile);
         playerRepository.save(player);
         return player;
+    }
+
+    @Override
+    public Player assignRegistration(int id, Registration registration) {
+        Player player = playerRepository.findById(id).get();
+        player.registerPlayer(registration);
+        return playerRepository.save(player);
     }
 }

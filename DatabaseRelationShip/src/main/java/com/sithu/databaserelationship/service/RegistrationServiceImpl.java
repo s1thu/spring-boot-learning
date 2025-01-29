@@ -25,7 +25,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public Registration addRegistration(Registration registration) {
-        registration.setId(0);
         return repo.save(registration);
     }
 

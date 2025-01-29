@@ -1,10 +1,12 @@
 package com.sithu.databaserelationship.controller;
 
+import com.sithu.databaserelationship.onetomany.Registration;
 import com.sithu.databaserelationship.onetoone.Player;
 import com.sithu.databaserelationship.onetoone.PlayerProfile;
 import com.sithu.databaserelationship.service.PlayerProfileServiceImpl;
 import com.sithu.databaserelationship.service.PlayerService;
 import com.sithu.databaserelationship.service.PlayerServiceImpl;
+import com.sithu.databaserelationship.service.RegistrationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,9 @@ public class PlayerController {
 
     @Autowired
     PlayerProfileServiceImpl profileService;
+
+    @Autowired
+    RegistrationServiceImpl registrationService;
 
     @GetMapping
     public List<Player> allPlayers() {
@@ -52,4 +57,9 @@ public class PlayerController {
         service.deletePlayer(id);
     }
 
+    @PutMapping("/{id}/registrations/{reg_id}")
+    public Player assignRegistration(@PathVariable int id,@PathVariable int reg_id){
+        Registration registration = registrationService.getRegistrationById(reg_id);
+        return service.assignRegistration(id,registration);
+    }
 }
