@@ -1,6 +1,6 @@
 package io.datajek.springmvc.junit;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,5 +39,33 @@ public class ArrayMethodsTest {
     public void assertNullTest(){
         String str = null;
         assertNull(str);
+    }
+
+    @Test
+    @Disabled
+    public void testSortArray() {
+        fail("unimplemented method");
+    }
+
+    @BeforeEach
+    void init(){
+        //Initialize the object here
+        System.out.println("Initializing before test");
+        ArrayMethods arrayMethods = new ArrayMethods();
+    }
+
+    @AfterEach
+    void afterEachTest(){
+        System.out.println("Clean up after test");
+    }
+
+    @BeforeAll
+    static void beforeAllTests() {
+        System.out.println("Run this code before all tests");
+    }
+
+    @AfterAll
+    static void afterAllTests() {
+        System.out.println("Run this code after all tests");
     }
 }
